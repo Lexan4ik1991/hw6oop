@@ -1,7 +1,7 @@
 package src.personal.views;
 
-import personal.controllers.UserController;
-import personal.model.User;
+import src.personal.controllers.UserController;
+import src.personal.model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +19,13 @@ public class ViewUser {
 
         while (true) {
             try {
-            String command = prompt("Введите команду: ");
+            String command = prompt("Введите команду: \n" +
+                    "CREATE/" +
+                    "READ/" +
+                    "LIST/" +
+                    "DELETE/" +
+                    "UPDATE/" +
+                    "EXIT\n");
             com = Commands.valueOf(command.toUpperCase());
             if (com == Commands.EXIT) return;
             switch (com) {
@@ -36,6 +42,9 @@ public class ViewUser {
                 case DELETE:
                     caseDeleted();
                     break;
+                case UPDATE:
+                    caseUpdate();
+                    break;
             }
             }
             catch  (Exception ee){
@@ -44,8 +53,20 @@ public class ViewUser {
         }
     }
 
+    private void caseUpdate() throws Exception {
+        String id = prompt("Enter id\n");
+        try {
+            User user = userController.readUser(id);
+            System.out.println(user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        userController.deleteUser(id);
+        caseCreate();
+    }
+
     private void caseDeleted() {
-        String id = prompt("Идентификатор пользователя: ");
+        String id = prompt("Идентификатор пользователя: \n");
         userController.deleteUser(id);
         System.out.println("user deleted");
     }
@@ -58,7 +79,7 @@ public class ViewUser {
     }
 
     private void caseRead() {
-        String id = prompt("Идентификатор пользователя: ");
+        String id = prompt("Идентификатор пользователя: \n");
         try {
             User user = userController.readUser(id);
             System.out.println(user);

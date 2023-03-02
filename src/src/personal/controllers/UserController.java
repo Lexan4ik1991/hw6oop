@@ -1,8 +1,8 @@
 package src.personal.controllers;
 
-import personal.model.Repository;
-import personal.model.User;
-import personal.model.ValidateUser;
+import src.personal.model.Repository;
+import src.personal.model.User;
+import src.personal.model.ValidateUser;
 
 import java.util.List;
 

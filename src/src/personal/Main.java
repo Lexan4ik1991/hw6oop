@@ -1,8 +1,8 @@
 package src.personal;
 
-import personal.controllers.UserController;
-import personal.model.*;
-import personal.views.ViewUser;
+import src.personal.controllers.UserController;
+import src.personal.model.*;
+import src.personal.views.ViewUser;
 
 public class Main {
     public static void main(String[] args) {
